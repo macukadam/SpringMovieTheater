@@ -1,7 +1,9 @@
 package io.org.saloon;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface SaloonRepository extends CrudRepository<Saloon, String>{
-	
+@Repository
+public interface SaloonRepository extends CrudRepository<Saloon, String> {
+
 }

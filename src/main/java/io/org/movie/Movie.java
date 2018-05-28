@@ -1,11 +1,11 @@
 package io.org.movie;
 
+import io.org.saloon.Saloon;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import io.org.saloon.Saloon;
 
 @Entity
 public class Movie {
@@ -18,7 +18,6 @@ public class Movie {
 	private Saloon saloon;
 
 	public Movie(String id, String name, String saloonId) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.saloon = new Saloon(saloonId, "");
@@ -29,10 +28,6 @@ public class Movie {
 		this.id = id;
 		this.name = name;
 		this.saloon = saloon;
-	}
-	
-	public Movie() {
-		
 	}
 
 	public String getId() {

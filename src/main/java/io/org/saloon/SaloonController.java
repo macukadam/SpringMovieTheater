@@ -1,42 +1,50 @@
 package io.org.saloon;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/saloons")
 public class SaloonController {
 
-	@Autowired
-	public SaloonService saloonService;
-	
-	@RequestMapping(value="/saloons", method= RequestMethod.GET)
-	public List<Saloon> getAllSaloons(){
-		return saloonService.getAllSaloons();
-	}
-	
-	@RequestMapping(value="/saloons/{id}", method= RequestMethod.GET)
-	public Saloon getSaloon(@PathVariable String id) {
-		return saloonService.getSaloon(id);
-	}
-	
-	@RequestMapping(value="/saloons/{id}", method= RequestMethod.DELETE)
-	public void deleteSaloon(@PathVariable String id) {
-		saloonService.deleteSaloon(id);
-	}
-	
-	@RequestMapping(value="/saloons", method= RequestMethod.POST)
-	public void addSaloon(@RequestBody Saloon saloon) {
-		saloonService.addSaloon(saloon);
-	}
-	
-	@RequestMapping(value="/saloons", method= RequestMethod.PUT)
-	public void updateSaloon(@RequestBody Saloon saloon) {
-		saloonService.updateSaloon(saloon);
-	}
+    private SaloonService saloonService;
+
+    @Autowired
+    public SaloonController(SaloonService saloonService) {
+        this.saloonService = saloonService;
+    }
+
+    @GetMapping
+    public List<Saloon> getAllSaloons() {
+        return saloonService.getAllSaloons();
+    }
+
+    @GetMapping(value = "/{id}")
+    public Saloon getSaloon(@PathVariable String id) {
+        return saloonService.getSaloon(id);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteSaloon(@PathVariable String id) {
+        saloonService.deleteSaloon(id);
+    }
+
+    @PostMapping
+    public void addSaloon(@RequestBody Saloon saloon) {
+        saloonService.addSaloon(saloon);
+    }
+
+    @PutMapping
+    public void updateSaloon(@RequestBody Saloon saloon) {
+        saloonService.updateSaloon(saloon);
+    }
 }
