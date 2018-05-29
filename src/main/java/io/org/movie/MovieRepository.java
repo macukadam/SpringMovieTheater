@@ -1,8 +1,11 @@
 package io.org.movie;
 
-import java.util.List;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MovieRepository extends CrudRepository<Movie, String>{
-	public List<Movie> findBySaloonId(String saloonId);
+import java.util.List;
+
+@Repository
+public interface MovieRepository extends CrudRepository<Movie, String> {
+    List<Movie> findBySaloonId(String saloonId);
 }
